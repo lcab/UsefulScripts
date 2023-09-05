@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiple Links Search</title>
+</head>
+<body>
+    <div style="text-align: center; padding-top: 50px;">
+        <h1>Search Multiple Links</h1>
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button onclick="searchLinks()">Search</button>
+    </div>
+
+    <div id="searchResults" style="text-align: center; padding-top: 20px;"></div>
+
+    <script>
+        // Define your list of links to search
+        const links = [
+            { text: 'Google', url: 'https://www.google.com' },
+            { text: 'YouTube', url: 'https://www.youtube.com' },
+            { text: 'GitHub', url: 'https://github.com' },
+            // Add more links here
+        ];
+
+        function searchLinks() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const searchResults = document.getElementById('searchResults');
+            searchResults.innerHTML = '';
+
+            for (const link of links) {
+                if (link.text.toLowerCase().includes(searchInput)) {
+                    const linkElement = document.createElement('a');
+                    linkElement.href = link.url;
+                    linkElement.textContent = link.text;
+                    linkElement.target = '_blank';
+                    searchResults.appendChild(linkElement);
+                    searchResults.appendChild(document.createElement('br'));
+                }
+            }
+
+            if (searchResults.children.length === 0) {
+                searchResults.textContent = 'No results found.';
+            }
+        }
+    </script>
+</body>
+</html>
